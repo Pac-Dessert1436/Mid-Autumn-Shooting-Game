@@ -51,9 +51,11 @@ Public NotInheritable Class SoundPlayer
     Private Sub Dispose(disposing As Boolean)
         If Not disposedValue Then
             If disposing Then
+                If waveOut IsNot Nothing Then
+                    RemoveHandler waveOut.PlaybackStopped, AddressOf OnPlaybackStopped
+                End If
                 reader.Dispose()
                 waveOut.Dispose()
-                RemoveHandler waveOut.PlaybackStopped, AddressOf OnPlaybackStopped
             End If
             disposedValue = True
         End If
