@@ -5,6 +5,7 @@ Imports VbPixelGameEngine
 
 Public NotInheritable Class Program
     Inherits PixelGameEngine
+    Implements IDisposable
 
     ' Game assets
     Private ReadOnly sprPlayer As New Sprite("Assets/player.png") ' Rabbit spaceship
@@ -31,7 +32,7 @@ Public NotInheritable Class Program
     Private m_spawnInterval As Single
     Private m_moonPos As New Vf2d(150, 60)
     Private m_bonusMult As Single
-
+    Private disposedValue As Boolean
     Private Const BONUS_EVERY As Single = 1000
 
     Private Enum GameState
@@ -64,9 +65,9 @@ Public NotInheritable Class Program
     End Sub
 
     Friend Shared Sub Main()
-        With New Program
-            If .Construct(300, 400, fullScreen:=True) Then .Start()
-        End With
+        Using game As New Program
+            If game.Construct(300, 400, fullScreen:=True) Then game.Start()
+        End Using
     End Sub
 
     Protected Overrides Function OnUserCreate() As Boolean
@@ -305,5 +306,24 @@ Public NotInheritable Class Program
         DrawString(New Vi2d(70, 300), "GAME OVER", Presets.Yellow, 2)
         DrawString(New Vi2d(50, 330), $"Final Score: {m_score,5}", Presets.Yellow, 1)
         DrawString(New Vi2d(50, 350), "Press ""R"" to restart", Presets.Yellow, 1)
+    End Sub
+
+    Private Sub Dispose(disposing As Boolean)
+        If Not disposedValue Then
+            If disposing Then
+                bgmMainTheme.Dispose()
+                sndLifeGained.Dispose()
+                sndLifeLost.Dispose()
+                sndExplosion.Dispose()
+                sndShoot.Dispose()
+            End If
+            disposedValue = True
+        End If
+    End Sub
+
+    Public Sub Dispose() Implements IDisposable.Dispose
+        ' Do not change this code. Put cleanup code in 'Dispose(disposing As Boolean)' method
+        Dispose(disposing:=True)
+        GC.SuppressFinalize(Me)
     End Sub
 End Class

@@ -1,4 +1,6 @@
-# Mid-Autumn Shooting Game Built with `vbPixelGameEngine`
+# Mid-Autumn Shooting Game, Made with `vbPixelGameEngine`
+
+> **Latest Update on May 21 2026**: Introduced `IDisposable` interface to manage `SoundPlayer` resources (preventing memory leaks), and upgraded the project to .NET 10.
 
 ![](screenshot.png)
 
@@ -11,20 +13,26 @@ Developed and launched during this year's Mid-Autumn Festival, this project is b
 
 All in-game visuals are hand-drawn by myself using Aseprite, while the bullets were originally intended to be stars, the size constaint of 10x10 pixels made this impractical, so I redesigned them as pink bows instead. Last but not least, the game features background music "Butari no Kimochi" (evoking cozy togetherness) and carefully selected sound effects from HaxeFlixel game templates, enhancing the warm, festive vibe.
 
+## Prerequisites
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+- **IDE**: Visual Studio 2026 (for `.slnx` solution file), Visual Studio Code (VS Code, for terminal support), or any other .NET 10-compatible IDE.
+- **Required NuGet packages**: NAudio 2.3.0, System.Drawing.Common 10.0.8
+
 ## Installation
-1. Clone (or download) the source code, and then navigate to your directory:
+1. Clone or download the repository, and then navigate to your directory:
    ```bash
    git clone https://github.com/Pac-Dessert1436/Mid-Autumn-Shooting-Game
    cd Mid-Autumn-Shooting-Game
    ```
-2. Restore dependencies:
+2. Restore NuGet packages via Package Manager Console in Visual Studio 2026, or use this command on a terminal in VS Code:
    ```bash
    dotnet restore
    ```
-3. Run (launches fullscreen at 300x400 resolution):
+3. Run the game by pressing F5 or via "Start" button in Visual Studio 2026, and it will launch fullscreen at 300x400 resolution. _If you're using VS Code, you can run it on a terminal as well:_
    ```bash
    dotnet run
-   # or: msbuild "Mid-Autumn Shooting Game.sln"
+   # or: 
+   msbuild "Mid-Autumn Shooting Game.sln"
    ```
 
 ## Gameplay
